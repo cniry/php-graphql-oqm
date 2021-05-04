@@ -6,11 +6,11 @@ use GraphQL\SchemaObject\QueryObject;
 
 class SimpleSelectorQueryObject extends QueryObject
 {
-    const OBJECT_NAME = "SimpleSelector";
+    const OBJECT_NAME = 'SimpleSelector';
 
     public function selectName()
     {
-        $this->selectField("name");
+        $this->selectField('name');
 
         return $this;
     }

@@ -2,7 +2,7 @@
 
 namespace GraphQL\SchemaGenerator\CodeGenerator\CodeFile;
 
-use GraphQL\Util\StringLiteralFormatter;
+use GraphQL\SchemaGenerator\CodeGenerator\SingleQuoteStringLiteralFormatter;
 
 /**
  * Class TraitFile
@@ -208,7 +208,7 @@ trait %3$s
      */
     protected function serializeParameterValue($value): string
     {
-        return StringLiteralFormatter::formatValueForRHS($value);
+        return SingleQuoteStringLiteralFormatter::formatValueForRHS($value);
     }
 
     /**

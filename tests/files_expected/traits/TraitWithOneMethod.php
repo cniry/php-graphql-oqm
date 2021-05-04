@@ -3,7 +3,7 @@
 trait TraitWithOneMethod
 {
     public function testTheTrait() {
-        print "test!";
+        print 'test!';
         die();
     }
 }

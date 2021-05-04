@@ -11,7 +11,7 @@ trait TraitWithMultipleMethods
      * @deprecated is deprecated
      */
     private function innerTest() {
-        print "test!";
+        print 'test!';
         return 0;
     }
 }

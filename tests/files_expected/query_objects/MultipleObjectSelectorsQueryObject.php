@@ -6,11 +6,11 @@ use GraphQL\SchemaObject\QueryObject;
 
 class MultipleObjectSelectorsQueryObject extends QueryObject
 {
-    const OBJECT_NAME = "MultipleObjectSelectors";
+    const OBJECT_NAME = 'MultipleObjectSelectors';
 
     public function selectRight(MultipleObjectSelectorsRightArgumentsObject $argsObject = null)
     {
-        $object = new MultipleObjectSelectorsRightQueryObject("right");
+        $object = new MultipleObjectSelectorsRightQueryObject('right');
         if ($argsObject !== null) {
             $object->appendArguments($argsObject->toArray());
         }
@@ -24,7 +24,7 @@ class MultipleObjectSelectorsQueryObject extends QueryObject
      */
     public function selectLeftObjects(MultipleObjectSelectorsLeftObjectsArgumentsObject $argsObject = null)
     {
-        $object = new LeftQueryObject("left_objects");
+        $object = new LeftQueryObject('left_objects');
         if ($argsObject !== null) {
             $object->appendArguments($argsObject->toArray());
         }

@@ -68,7 +68,7 @@ class QueryObjectClassBuilder extends ObjectClassBuilder
     {
         $method = "public function select$upperCamelName()
 {
-    \$this->selectField(\"$propertyName\");
+    \$this->selectField('$propertyName');
 
     return \$this;
 }";
@@ -86,7 +86,7 @@ class QueryObjectClassBuilder extends ObjectClassBuilder
         $objectClassName  = $fieldTypeName . 'QueryObject';
         $method = "public function select$upperCamelName($argsObjectName \$argsObject = null)
 {
-    \$object = new $objectClassName(\"$fieldName\");
+    \$object = new $objectClassName('$fieldName');
     if (\$argsObject !== null) {
         \$object->appendArguments(\$argsObject->toArray());
     }

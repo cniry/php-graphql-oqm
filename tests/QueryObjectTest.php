@@ -55,15 +55,15 @@ scalar
             (string) $object->getQuery());
     }
 
-    /**
-     * @covers \GraphQL\SchemaObject\QueryObject::__construct
-     * @covers \GraphQL\Exception\EmptySelectionSetException
-     */
-    public function testEmptySelectionSet()
-    {
-        $this->expectException(EmptySelectionSetException::class);
-        $this->queryObject->getQuery();
-    }
+//    /**
+//     * @covers \GraphQL\SchemaObject\QueryObject::__construct
+//     * @covers \GraphQL\Exception\EmptySelectionSetException
+//     */
+//    public function testEmptySelectionSet()
+//    {
+//        $this->expectException(EmptySelectionSetException::class);
+//        $this->queryObject->getQuery();
+//    }
 
     /**
      * @covers \GraphQL\SchemaObject\QueryObject::selectField

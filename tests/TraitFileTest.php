@@ -79,8 +79,8 @@ class TraitFileTest extends CodeFileTestCase
     {
         $fileName = 'TraitWithImports';
         $trait = new TraitFile(static::getGeneratedFilesDir(), $fileName);
-        $trait->addImport("GraphQL\Query");
-        $trait->addImport("GraphQL\Client");
+        $trait->addImport('GraphQL\Query');
+        $trait->addImport('GraphQL\Client');
         $trait->writeFile();
 
         $this->assertFileEquals(static::getExpectedFilesDir() . "/$fileName.php", $trait->getWritePath());
@@ -98,7 +98,7 @@ class TraitFileTest extends CodeFileTestCase
     {
         $fileName = 'EmptyTrait';
         $trait = new TraitFile(static::getGeneratedFilesDir(), $fileName);
-        $trait->addImport("");
+        $trait->addImport('');
         $trait->writeFile();
 
         $this->assertFileEquals(static::getExpectedFilesDir() . "/$fileName.php", $trait->getWritePath());
@@ -118,9 +118,9 @@ class TraitFileTest extends CodeFileTestCase
     {
         $fileName = 'TraitWithNamespaceAndImports';
         $trait = new TraitFile(static::getGeneratedFilesDir(), $fileName);
-        $trait->setNamespace("GraphQL\\Test");
-        $trait->addImport("GraphQL\\Query");
-        $trait->addImport("GraphQL\\Client");
+        $trait->setNamespace('GraphQL\Test');
+        $trait->addImport('GraphQL\Query');
+        $trait->addImport('GraphQL\Client');
         $trait->writeFile();
 
         $this->assertFileEquals(static::getExpectedFilesDir() . "/$fileName.php", $trait->getWritePath());
@@ -221,7 +221,7 @@ class TraitFileTest extends CodeFileTestCase
         $fileName = 'TraitWithOneMethod';
         $trait = new TraitFile(static::getGeneratedFilesDir(), $fileName);
         $trait->addMethod('public function testTheTrait() {
-    print "test!";
+    print \'test!\';
     die();
 }'
         );
@@ -248,7 +248,7 @@ class TraitFileTest extends CodeFileTestCase
 }'
         );
         $trait->addMethod('private function innerTest() {
-    print "test!";
+    print \'test!\';
     return 0;
 }'
         , true, 'is deprecated');
@@ -315,9 +315,9 @@ class TraitFileTest extends CodeFileTestCase
     {
         $fileName = 'TraitWithEverything';
         $trait = new TraitFile(static::getGeneratedFilesDir(), $fileName);
-        $trait->setNamespace("GraphQL\\Test");
-        $trait->addImport("GraphQL\\Query");
-        $trait->addImport("GraphQL\\Client");
+        $trait->setNamespace('GraphQL\Test');
+        $trait->addImport('GraphQL\Query');
+        $trait->addImport('GraphQL\Client');
         $trait->addProperty('propOne');
         $trait->addProperty('propTwo', true);
         $trait->addMethod('public function getProperties() {
