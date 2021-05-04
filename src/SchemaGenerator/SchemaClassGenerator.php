@@ -314,7 +314,10 @@ class SchemaClassGenerator
      */
 	private function setWriteDir(): void
     {
-        if ($this->writeDir !== '') return;
+        if (!empty($this->writeDir)){
+            $this->validateDir($this->writeDir);
+            return;
+        }
 
         $currentDir = dirname(__FILE__);
         while (basename($currentDir) !== 'php-graphql-oqm') {
@@ -322,6 +325,13 @@ class SchemaClassGenerator
         }
 
         $this->writeDir = $currentDir . '/schema_object';
+    }
+
+    private function validateDir(string $dirname): void
+    {
+        if(!is_dir($dirname)){
+            throw new \Exception(sprintf('Export dir %s not exists. Create it first by yourself.', $dirname));
+        }
     }
 
     /**
