@@ -15,6 +15,7 @@ composer require gmostafa/php-graphql-oqm
 ```
 
 # Generating The Schema Objects
+## With user input
 After installing the package, the first step is to generate the schema objects. This can be easily achieved by executing
 the following command:
 ```
@@ -23,6 +24,36 @@ php vendor/bin/generate_schema_objects
 This script will retrieve the API schema types using the introspection feature in GraphQL, then generate the schema
 objects from the types, and save them in the `schema_object` directory in the root directory of the package. You can
 override the default write directory by providing the "Custom classes writing dir" value when running the command.
+## Calling from scripts
+You can call the same binary from scripts using these parameters:
+
+### Required arguments:
+- Start in CLI mode:<br>
+`--cli`
+  <br>
+  <br>
+- Set API url:<br>
+`--url="https://API URL/"`
+  <br>
+  <br>
+- Set destination dir:<br>
+`--dir="schema_object"`
+
+### Additional authorisation arguments:
+- Set header name:<br>
+`--headername="authorisation"`
+  <br>
+  <br>
+- Set header value:<br>
+`--headervalue="Bearer ....."`
+  <br>
+  <br>
+  
+### Example:
+```
+php vendor/bin/generate_schema_objects --cli --url="https://pokeapi-graphiql.herokuapp.com/" --dir="pokemons"`
+```
+
 
 # Usage
 In all the examples below I'm going to use the super cool public Pokemon GraphQL API as an illustration.

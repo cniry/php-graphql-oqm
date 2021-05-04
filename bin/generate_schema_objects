@@ -16,23 +16,25 @@ if (!$autoLoadFound) {
 	throw new RuntimeException('Could not find vendor/autoload.php');
 }
 
+use GraphQL\ConfigurationManager;
 use GraphQL\Client;
 use GraphQL\SchemaGenerator\SchemaClassGenerator;
 
-$endpointUrl = readline('GraphlQL endpoint URL: ');
+$configurationManager = new ConfigurationManager();
+$configuration = $configurationManager->buildConfiguration();
 
 $authHeaders    = [];
-$authHeaderName = readline('Authorization header name: ');
-if (!empty($authHeaderName)) {
-    $authHeaderValue = readline('Authorization header value: ');
+$authHeaderName = !empty($configuration[ConfigurationManager::HEADER_NAME]) ? $configuration[ConfigurationManager::HEADER_NAME] : '';
+if ($authHeaderName) {
+    $authHeaderValue = $configuration[ConfigurationManager::HEADER_VALUE];
     $authHeaders = [$authHeaderName => $authHeaderValue];
 }
 
-$customWriteDir = readline('Custom classes writing dir (optional): ');
-if (empty($customWriteDir)) $customWriteDir = '';
+$exportDir = $configuration[ConfigurationManager::EXPORT_DIR];
+$exportDir = !empty($exportDir) ? $exportDir : '';
 
-$client  = new Client($endpointUrl, $authHeaders);
-$scanner = new SchemaClassGenerator($client, $customWriteDir);
+$client  = new Client($configuration[ConfigurationManager::ENDPOINT_URL], $authHeaders);
+$scanner = new SchemaClassGenerator($client, $exportDir);
 
 print "-------------------------------------------\n";
 print "Generating schema objects from schema types\n";
