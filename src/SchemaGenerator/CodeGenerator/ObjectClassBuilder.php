@@ -16,22 +16,20 @@ abstract class ObjectClassBuilder implements ObjectBuilderInterface
      */
     protected $classFile;
 
-    /**
-     * @param string $propertyName
-     */
-    protected function addProperty($propertyName)
+    protected function addProperty(string $propertyName, string $type = '')
     {
-        $this->classFile->addProperty($propertyName);
+        $this->classFile->addProperty($propertyName, null, $type);
     }
 
     /**
      * @param string $propertyName
      * @param string $upperCamelName
      */
-    protected function addScalarSetter($propertyName, $upperCamelName)
+    protected function addScalarSetter($propertyName, $upperCamelName, $type = '')
     {
+        $scalarType = $type ? $type . ' ' : '';
         $lowerCamelName = lcfirst($upperCamelName);
-        $method = "public function set$upperCamelName($$lowerCamelName): self
+        $method = "public function set$upperCamelName({$scalarType}$$lowerCamelName): self /** addScalarSetter */
 {
     \$this->$propertyName = $$lowerCamelName;
 
@@ -48,7 +46,7 @@ abstract class ObjectClassBuilder implements ObjectBuilderInterface
     protected function addListSetter(string $propertyName, string $upperCamelName, string $propertyType)
     {
         $lowerCamelName = lcfirst($upperCamelName);
-        $method = "public function set$upperCamelName(array $$lowerCamelName): self
+        $method = "public function set$upperCamelName(array $$lowerCamelName): self /** addListSetter */
 {
     \$this->$propertyName = $$lowerCamelName;
 
@@ -65,7 +63,7 @@ abstract class ObjectClassBuilder implements ObjectBuilderInterface
     protected function addEnumSetter(string $propertyName, string $upperCamelName, string $objectClass)
     {
         $lowerCamelName = lcfirst(str_replace('_', '', $objectClass));
-        $method         = "public function set$upperCamelName($$lowerCamelName): self
+        $method         = "public function set$upperCamelName($$lowerCamelName): self /** addEnumSetter */
 {
     \$this->$propertyName = new RawObject($$lowerCamelName);
 
@@ -83,7 +81,7 @@ abstract class ObjectClassBuilder implements ObjectBuilderInterface
     protected function addObjectSetter(string $propertyName, string $upperCamelName, string $objectClass)
     {
         $lowerCamelName = lcfirst(str_replace('_', '', $objectClass));
-        $method         = "public function set$upperCamelName($objectClass $$lowerCamelName): self
+        $method         = "public function set$upperCamelName($objectClass $$lowerCamelName): self /** addObjectSetter */
 {
     \$this->$propertyName = $$lowerCamelName;
 

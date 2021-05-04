@@ -32,11 +32,11 @@ class ArgumentsObjectClassBuilder extends ObjectClassBuilder
     /**
      * @param string $argumentName
      */
-    public function addScalarArgument(string $argumentName)
+    public function addScalarArgument(string $argumentName, string $type)
     {
         $upperCamelCaseArg = StringLiteralFormatter::formatUpperCamelCase($argumentName);
-        $this->addProperty($argumentName);
-        $this->addScalarSetter($argumentName, $upperCamelCaseArg);
+        $this->addProperty($argumentName, $type);
+        $this->addScalarSetter($argumentName, $upperCamelCaseArg, $type);
     }
 
     /**
@@ -46,7 +46,7 @@ class ArgumentsObjectClassBuilder extends ObjectClassBuilder
     public function addListArgument(string $argumentName, string $typeName)
     {
         $upperCamelCaseArg = StringLiteralFormatter::formatUpperCamelCase($argumentName);
-        $this->addProperty($argumentName);
+        $this->addProperty($argumentName, $typeName);
         $this->addListSetter($argumentName, $upperCamelCaseArg, $typeName);
     }
 
@@ -57,7 +57,7 @@ class ArgumentsObjectClassBuilder extends ObjectClassBuilder
     public function addInputEnumArgument(string $argumentName, string $typeName)
     {
         $upperCamelCaseArg = StringLiteralFormatter::formatUpperCamelCase($argumentName);
-        $this->addProperty($argumentName);
+        $this->addProperty($argumentName, $typeName);
         $this->addEnumSetter($argumentName, $upperCamelCaseArg, $typeName);
     }
 
@@ -69,7 +69,7 @@ class ArgumentsObjectClassBuilder extends ObjectClassBuilder
     {
         $typeName .= 'InputObject';
         $upperCamelCaseArg = StringLiteralFormatter::formatUpperCamelCase($argumentName);
-        $this->addProperty($argumentName);
+        $this->addProperty($argumentName, $typeName);
         $this->addObjectSetter($argumentName, $upperCamelCaseArg, $typeName);
     }
 

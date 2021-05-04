@@ -6,7 +6,7 @@ use GraphQL\SchemaObject\ArgumentsObject;
 
 class WithInputObjectArgArgumentsObject extends ArgumentsObject
 {
-    protected $objectProperty;
+    protected SomeInputObject $objectProperty;
 
     public function setObjectProperty(SomeInputObject $someInputObject): self
     {

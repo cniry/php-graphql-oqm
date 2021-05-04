@@ -6,7 +6,7 @@ use GraphQL\SchemaObject\ArgumentsObject;
 
 class WithListArgArgumentsObject extends ArgumentsObject
 {
-    protected $listProperty;
+    protected array $listProperty;
 
     public function setListProperty(array $listProperty): self
     {

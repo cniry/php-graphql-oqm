@@ -6,8 +6,8 @@ use GraphQL\SchemaObject\ArgumentsObject;
 
 class WithMultipleListArgsArgumentsObject extends ArgumentsObject
 {
-    protected $listProperty;
-    protected $another_list_property;
+    protected array $listProperty;
+    protected array $another_list_property;
 
     public function setListProperty(array $listProperty): self
     {

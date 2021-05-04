@@ -8,8 +8,8 @@ class _TestFilterInputObject extends InputObject
 {
     protected $first_name;
     protected $lastName;
-    protected $ids;
-    protected $testFilter;
+    protected array $ids;
+    protected _TestFilterInputObject $testFilter;
 
     public function setFirstName($firstName): self
     {

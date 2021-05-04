@@ -6,8 +6,8 @@ use GraphQL\SchemaObject\ArgumentsObject;
 
 class WithMultipleInputObjectArgsArgumentsObject extends ArgumentsObject
 {
-    protected $objectProperty;
-    protected $another_object_property;
+    protected SomeInputObject $objectProperty;
+    protected AnotherInputObject $another_object_property;
 
     public function setObjectProperty(SomeInputObject $someInputObject): self
     {

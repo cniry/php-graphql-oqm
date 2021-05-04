@@ -209,7 +209,7 @@ class SchemaClassGenerator
                     $objectBuilder->addListValue($name, $typeName);
                 } else {
                     if ($typeKind === FieldTypeKindEnum::SCALAR || $typeKind === FieldTypeKindEnum::ENUM_OBJECT) {
-                        $objectBuilder->addScalarValue($name);
+                        $objectBuilder->addScalarValue($name, strtolower($typeName));
                     } else {
                         $objectBuilder->addInputObjectValue($name, $typeName);
                     }
@@ -281,7 +281,7 @@ class SchemaClassGenerator
                     $objectBuilder->addListArgument($name, $typeName);
                 } else {
                     if ($typeKind === FieldTypeKindEnum::SCALAR) {
-                        $objectBuilder->addScalarArgument($name);
+                        $objectBuilder->addScalarArgument($name, strtolower($typeName));
                     } elseif ($typeKind === FieldTypeKindEnum::ENUM_OBJECT) {
                         $objectBuilder->addInputEnumArgument($name, $typeName);
                     } else {

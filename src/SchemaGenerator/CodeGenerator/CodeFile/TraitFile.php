@@ -39,9 +39,9 @@ trait %3$s
     /**
      * This array is a map that stores that properties defined in a file in a key value manner [propertyName] => value
      *
-     * @var array
+     * @var TraitProperty[]
      */
-    protected $properties;
+    protected $properties = [];
 
     /**
      * This array is a list that stores the string representations of methods in the file
@@ -89,10 +89,10 @@ trait %3$s
      * @param string               $name
      * @param null|string|int|bool $value
      */
-    public function addProperty(string $name, $value = null)
+    public function addProperty(string $name, $value = null, ?string $type = null)
     {
         if (is_string($name) && !empty($name)) {
-            $this->properties[$name] = $value;
+            $this->properties[$name] = new TraitProperty($name, $value, $type);
         }
     }
 
@@ -169,12 +169,15 @@ trait %3$s
     {
         $string = '';
         if (!empty($this->properties)) {
-            foreach ($this->properties as $name => $value) {
+            foreach ($this->properties as $name => $property) {
+                $value = $property->getValue();
+                $type = $property->getType();
+                $typeDef = $type ? $type . ' ' : '';
                 if ($value === null) {
-                    $string .= "    protected $$name;" . PHP_EOL;
+                    $string .= "    protected {$typeDef}$$name;" . PHP_EOL;
                 } else {
                     $value = $this->serializeParameterValue($value);
-                    $string .= "    protected $$name = $value;" . PHP_EOL;
+                    $string .= "    protected {$typeDef}$$name = $value;" . PHP_EOL;
                 }
             }
         }

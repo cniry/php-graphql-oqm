@@ -6,7 +6,7 @@ use GraphQL\SchemaObject\InputObject;
 
 class WithInputObjectValueInputObject extends InputObject
 {
-    protected $inputObject;
+    protected WithListValueInputObject $inputObject;
 
     public function setInputObject(WithListValueInputObject $withListValueInputObject): self
     {

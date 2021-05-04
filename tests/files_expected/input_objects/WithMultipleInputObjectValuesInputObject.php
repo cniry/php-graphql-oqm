@@ -6,8 +6,8 @@ use GraphQL\SchemaObject\InputObject;
 
 class WithMultipleInputObjectValuesInputObject extends InputObject
 {
-    protected $inputObject;
-    protected $inputObjectTwo;
+    protected WithListValueInputObject $inputObject;
+    protected _TestFilterInputObject $inputObjectTwo;
 
     public function setInputObject(WithListValueInputObject $withListValueInputObject): self
     {
