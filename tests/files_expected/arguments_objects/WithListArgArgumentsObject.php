@@ -8,7 +8,7 @@ class WithListArgArgumentsObject extends ArgumentsObject
 {
     protected $listProperty;
 
-    public function setListProperty(array $listProperty)
+    public function setListProperty(array $listProperty): self
     {
         $this->listProperty = $listProperty;
 

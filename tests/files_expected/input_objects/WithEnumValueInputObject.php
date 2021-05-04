@@ -8,7 +8,7 @@ class WithEnumValueInputObject extends InputObject
 {
     protected $enumVal;
 
-    public function setEnumVal($enumVal)
+    public function setEnumVal($enumVal): self
     {
         $this->enumVal = $enumVal;
 
