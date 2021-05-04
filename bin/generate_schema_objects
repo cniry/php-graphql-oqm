@@ -18,6 +18,7 @@ if (!$autoLoadFound) {
 
 use GraphQL\ConfigurationManager;
 use GraphQL\Client;
+use GraphQL\SchemaGenerator\CodeGenerator\ObjectBuilderInterface;
 use GraphQL\SchemaGenerator\SchemaClassGenerator;
 
 $configurationManager = new ConfigurationManager();
@@ -29,12 +30,13 @@ if ($authHeaderName) {
     $authHeaderValue = $configuration[ConfigurationManager::HEADER_VALUE];
     $authHeaders = [$authHeaderName => $authHeaderValue];
 }
+$namespace = !empty($configuration[ConfigurationManager::CLASS_NAMESPACE]) ? $configuration[ConfigurationManager::CLASS_NAMESPACE] : ObjectBuilderInterface::DEFAULT_NAMESPACE;
 
 $exportDir = $configuration[ConfigurationManager::EXPORT_DIR];
 $exportDir = !empty($exportDir) ? $exportDir : '';
 
 $client  = new Client($configuration[ConfigurationManager::ENDPOINT_URL], $authHeaders);
-$scanner = new SchemaClassGenerator($client, $exportDir);
+$scanner = new SchemaClassGenerator($client, $exportDir, $namespace);
 
 print "-------------------------------------------\n";
 print "Generating schema objects from schema types\n";

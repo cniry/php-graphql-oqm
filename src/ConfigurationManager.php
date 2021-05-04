@@ -2,12 +2,15 @@
 
 namespace GraphQL;
 
+use GraphQL\SchemaGenerator\CodeGenerator\ObjectBuilderInterface;
+
 class ConfigurationManager
 {
     public const CLI = 'cli';
     public const ENDPOINT_URL = 'url';
     public const HEADER_NAME = 'headername';
     public const HEADER_VALUE = 'headervalue';
+    public const CLASS_NAMESPACE = 'namespace';
     public const EXPORT_DIR = 'dir';
 
     private function getRequiredArguments(): array
@@ -23,6 +26,7 @@ class ConfigurationManager
         return [
             self::HEADER_NAME => 'Authorization header name',
             self::HEADER_VALUE => 'Authorization header value',
+            self::CLASS_NAMESPACE => 'Generated classes namespace (default is '.ObjectBuilderInterface::DEFAULT_NAMESPACE.')',
         ];
     }
 
@@ -67,10 +71,10 @@ class ConfigurationManager
             $configuration[$paramName] = !empty($currentArgs[$paramName]) ? $currentArgs[$paramName] : $this->missingValue($isCliMode, $paramName, $label);
         }
 
-        if (!$configuration[self::CLI]) {
-            foreach ($additionalParameters as $paramName => $label) {
-                $configuration[$paramName] = !empty($currentArgs[$paramName]) ? $currentArgs[$paramName] : $this->missingValue($isCliMode, $paramName, $label);
-            }
+        foreach ($additionalParameters as $paramName => $label) {
+            $configuration[$paramName] = !empty($currentArgs[$paramName])
+                ? $currentArgs[$paramName]
+                : ($configuration[self::CLI] ? null : $this->missingValue($isCliMode, $paramName, $label));
         }
         return $configuration;
     }
