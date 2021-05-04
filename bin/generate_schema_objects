@@ -38,10 +38,16 @@ $scanner = new SchemaClassGenerator($client, $exportDir);
 
 print "-------------------------------------------\n";
 print "Generating schema objects from schema types\n";
-print "-------------------------------------------\n";
+print "-------------------------------------------\n\n";
 
 $scanner->generateRootQueryObject();
 
 print "-------------------------------------------\n";
-print "Schema objects generation complete\n";
-print "-------------------------------------------\n";
+print "Schema objects generation complete\n\n\n";
+print "STATS\n";
+
+foreach($scanner->getStats() as $label => $value){
+    print "$label: $value\n";
+}
+
+print "-------------------------------------------\n\n";

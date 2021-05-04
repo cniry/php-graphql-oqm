@@ -84,6 +84,15 @@ class SchemaClassGenerator
         return true;
     }
 
+    public function getStats(): array
+    {
+        return [
+            'Namespace' => $this->generationNamespace,
+            'Generated objects' => count($this->generatedObjects),
+            'Target dir' => $this->writeDir,
+        ];
+    }
+
     /**
      * This method receives the array of object fields as an input and adds the fields to the query object building
      *
